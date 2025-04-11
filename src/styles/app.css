@@ -1,0 +1,29 @@
+@font-face{
+    font-family: 'HarryPotter';
+    src: url('/fonts/HarryPotter.ttf');
+}
+
+html, body, #root{
+    margin: 0;
+    height: 100%;
+    padding: 0;
+    background-color: #11111F;
+    color: #EDEDED;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'HarryPotter';
+    padding: 1rem;
+    color: gold;
+    font-size: 50px;
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+
+}
+
+
+.title{
+    font-family: 'HarryPotter';
+
+}
