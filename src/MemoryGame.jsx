@@ -20,16 +20,25 @@ function MemoryGame({level, cardData, handleLevel}) {
     else if (level == 3){
       cardCount = 12;
     }
+    cardData.sort(() => Math.random() - 0.5); // shuffle the data 
     const selected = cardData.slice(0, cardCount); // grabbing the amount of cards based on the level
-    selected.sort(() => Math.random() - 0.5); // shuffle the data 
     setSelectData(selected);
 
   }, [level, cardData]);
 
 
+  // This function tests if the person clicked all the cards
+  function handleWinner(currentScore, cardData){
+    if (currentScore === cardData.length){
+        return true;
+    }
+    return false;
+  }
+
+
   function handleClick(id){
     // Grab the id
-    const clickedCard = cardData.find((card) => card.id == id);
+    const clickedCard = selectData.find((card) => card.id == id);
 
     // Calculate if winner
     if(handleWinner(currentScore, selectData)){
@@ -37,8 +46,8 @@ function MemoryGame({level, cardData, handleLevel}) {
         setBestScore(currentScore);
       }
 
-      setWinner(true);
-      setLevel(0);
+      setWinner(true); // there is a winner!! - need to figure out how to display this
+      setLevel(0); // set back so that it is not conditionally rendered 
       return;
     }
 
@@ -59,25 +68,11 @@ function MemoryGame({level, cardData, handleLevel}) {
     return;
   }
 
-  
-
-  function handleWinner(currentScore, cardData){
-    if (currentScore === cardData.length){
-        return true;
-    }
-    return false;
-  }
-
-  
-
-  
-  
-
-  
 
   return (
     <>
       {/* Have conditional that tests whether or whether not to display the card - playGame one - need to figure out how to return to previous page */}
+      {/* When rendering pass the handleClick function through and pass the Id thruogh it for that one pass card.id, put the key as the id */}
       <p>PLAY GAME</p>
     </>
   )
