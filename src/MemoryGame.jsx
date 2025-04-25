@@ -9,6 +9,7 @@ function MemoryGame({level, cardData, handleLevel}) {
   const [currentScore, setCurrentScore] = useState(0);  // current score counter
   const [selectData, setSelectData] = useState([]);
   const [winner, setWinner] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
 
   // useEffect to filter out the cardData based on the level
   useEffect( () =>{
@@ -50,23 +51,26 @@ function MemoryGame({level, cardData, handleLevel}) {
         setBestScore(currentScore);
       }
       setCurrentScore(0);
-      handleLevel(0);
+      // handleLevel(0); // not yet cuz what if they want to replay
+      setGameOver(true);
       return;
     }
 
     // Not clicked - increase the score by 1, set clicked to true for that card, keep playing game
-    setCurrentScore(currentScore+1);
+    const newScore = currentScore + 1; // 🔥 manually calculate the updated score
+    setCurrentScore(newScore);
     clickedCard.clicked = true;
 
     // Calculate if winner
-    if(handleWinner(currentScore, selectData)){
+    if(handleWinner(newScore, selectData)){
       // update best score
       if (currentScore > bestScore){
         setBestScore(currentScore);
       }
 
       setWinner(true); // there is a winner!! - need to figure out how to display this
-      handleLevel(0); // set back so that it is not conditionally rendered 
+      setGameOver(true);
+      // handleLevel(0); // set back so that it is not conditionally rendered 
       return;
     }
 
@@ -78,6 +82,24 @@ function MemoryGame({level, cardData, handleLevel}) {
     return;
   }
 
+  function replayLevel() {
+    // Reset everything but keep the same level and the best score
+    let cardCount = 4;
+    if (level === 2) cardCount = 8;
+    else if (level === 3) cardCount = 12;
+  
+    const shuffled = [...cardData]
+      .filter(card => card.image) // in case you filtered on App side
+      .sort(() => Math.random() - 0.5)
+      .slice(0, cardCount);
+  
+    setSelectData(shuffled);
+    setCurrentScore(0);
+    setWinner(false);
+    setGameOver(false);
+  }
+  
+
 
   return (
     <>
@@ -86,26 +108,37 @@ function MemoryGame({level, cardData, handleLevel}) {
 
       {/* When i dont give correct score i need a conditional to say try this level again and it will resume or i need it to go pack to main page  */}
 
-    <div className='scoreCard'>
-      <div>Current Score: {currentScore}</div>
-      <div>Best Score: {bestScore}</div>
-    </div>
+      {gameOver ? 
+        (<div className="gameOverMenu">
+          <h2>{winner ? "You Won!" : "Game Over"}</h2>
+          <button onClick={replayLevel}>Replay Level</button>
+          <button onClick={() => handleLevel(0)}>Back to Home</button>
+        </div>)
+        : (
+          <>
+            <div className='scoreCard'>
+              <div>Current Score: {currentScore}</div>
+              <div>Best Score: {bestScore}</div>
+            </div>
 
 
-    <div className='container'>
-      <div className='allCards'>
-        {selectData.map((card) => (
-          <Card 
-            key={card.id}
-            id={card.id}
-            name={card.name}
-            image={card.image}
-            handleClick={handleClick}
-          />
-        ))}
+            <div className='container'>
+              <div className='allCards'>
+                {selectData.map((card) => (
+                  <Card 
+                    key={card.id}
+                    id={card.id}
+                    name={card.name}
+                    image={card.image}
+                    handleClick={handleClick}
+                  />
+                ))}
 
-      </div>
-    </div>
+              </div>
+            </div>
+          </>
+        )}
+    
   
 
 
