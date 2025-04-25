@@ -1,9 +1,37 @@
-.card{
-    border: 1px solid pink;
-    
+@font-face{
+    font-family: 'HarryPotter';
+    src: url('/fonts/HarryPotter.ttf');
 }
 
-img{
-    width: 200px;
-    height: 300px;
+.card {
+    border: 2px solid rgb(91, 91, 228);         /* soft pink border */
+    border-radius: 16px;               /* rounded corners (not circular) */
+    overflow: hidden;                  /* clip anything outside rounded corners */
+    background-color: rgba(8, 23, 63, 0.83);          /* clean card background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    transition: transform 0.2s ease;  /* smooth hover effect */
+    text-align: center;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.card:hover {
+    transform: scale(1.05);
+}
+
+  
+.card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 3;              /* classic playing card ratio */
+    object-fit: cover;
+    border-bottom: 1px solid #eee;    /* optional: separate image from text */
+}
+
+.card p {
+    color: white;
+    font-family: 'HarryPotter', sans-serif;
+    font-size: 1.2rem;
 }
