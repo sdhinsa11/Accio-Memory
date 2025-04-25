@@ -48,9 +48,11 @@ function App(){
                 <div>
                     {(level > 0) ? 
                     
-                    (<MemoryGame level = {level} cardData={cardData} handleLevel={handleLevel}></MemoryGame>) : 
+                    // Shows this once pressed the level, the level gets reset after
+                    (<MemoryGame level = {level} cardData={cardData} handleLevel={setLevel}></MemoryGame>) : 
                     
                     (<>
+                        {/* shows this if haven't started the game yet */}
                         <div className='title'>Pick a Level</div>
                         <div>
                             <div className='level-Easy' onClick={() => handleLevel(1)}>Easy</div>
