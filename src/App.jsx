@@ -57,12 +57,16 @@ function App(){
                     
                     (<>
                         {/* shows this if haven't started the game yet */}
-                        <div className='title'>Pick a Level</div>
-                        <div>
-                            <div className='level-Easy' onClick={() => handleLevel(1)}>Easy</div>
-                            <div className='level-Med'  onClick={() => handleLevel(2)}>Medium</div>
-                            <div className='level-Hard' onClick={() => handleLevel(3)}>Hard</div>
-                        </div> 
+
+                        <div className='homeScreen'>
+                            <div className='title'>Pick a Level</div>
+                            <div className="level-container">
+                                <div className='level-Easy' onClick={() => handleLevel(1)}>Easy</div>
+                                <div className='level-Med'  onClick={() => handleLevel(2)}>Medium</div>
+                                <div className='level-Hard' onClick={() => handleLevel(3)}>Hard</div>
+                            </div> 
+                        </div>
+                       
                     </>)}
                 </div>
             </div>

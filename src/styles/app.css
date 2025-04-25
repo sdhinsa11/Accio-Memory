@@ -26,7 +26,43 @@ html, body, #root{
 }
 
 
-.title{
-    font-family: 'HarryPotter';
-
+.title {
+    font-family: 'HarryPotter', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
+
+.level-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* space between buttons */
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    padding: 0.5rem;
+}
+  
+.level-Easy,
+.level-Med,
+.level-Hard {
+  font-family: 'HarryPotter', sans-serif;
+  font-size: 2rem; /* increased font size */
+  text-align: center;
+  margin: 0.75rem;
+  padding: 1rem 2rem; /* increased padding */
+  border: 2px solid rgb(91, 91, 228);
+  border-radius: 12px;
+  background-color: rgba(8, 23, 63, 0.83);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+  
+.level-Easy:hover,
+.level-Med:hover,
+.level-Hard:hover {
+    background-color: rgba(12, 24, 58, 0.83);
+    transform: scale(1.05);
+}
+  
