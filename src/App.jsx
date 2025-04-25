@@ -21,11 +21,13 @@ function App(){
         fetch('https://hp-api.onrender.com/api/characters')
         .then(response => response.json())
         .then(data => {
-            const formattedData = data.map(character => ({
-                name: character.name,
-                image: character.image,
-                clicked: false,
-                id: id++
+            const formattedData = data
+                .filter(character => character.image) // only keep characters with an image
+                .map(character => ({
+                    name: character.name,
+                    image: character.image,
+                    clicked: false,
+                    id: id++
             }));
             setCardData(formattedData);
 
@@ -41,6 +43,8 @@ function App(){
 
     return (
         <>
+            {/* testing purposes */}
+            {/* <pre>{JSON.stringify(cardData, null, 2)}</pre> */}
             <div className='header'>Accio Memory</div>
             {/* Call the memory, show the levels here  */}
 
