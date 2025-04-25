@@ -1,1 +1,13 @@
+.allCards{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 1rem; /* space between the cards */
+    padding: 1rem; /* optional: space around the whole grid */
+}
 
+.container{
+    max-width: 1200px;
+    margin: 0 auto; /* center it */
+    padding: 0 1rem; /* padding on sides */
+
+}

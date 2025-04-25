@@ -86,21 +86,27 @@ function MemoryGame({level, cardData, handleLevel}) {
 
       {/* When i dont give correct score i need a conditional to say try this level again and it will resume or i need it to go pack to main page  */}
 
-      {selectData.map((card) => (
-        <Card 
-          key={card.id}
-          id={card.id}
-          name={card.name}
-          image={card.image}
-          handleClick={handleClick}
-        />
-      ))}
+    <div className='scoreCard'>
+      <div>Current Score: {currentScore}</div>
+      <div>Best Score: {bestScore}</div>
+    </div>
 
-      <div>
-        <div>Current Score: {currentScore}</div>
-        <div>Best Score: {bestScore}</div>
-        
+
+    <div className='container'>
+      <div className='allCards'>
+        {selectData.map((card) => (
+          <Card 
+            key={card.id}
+            id={card.id}
+            name={card.name}
+            image={card.image}
+            handleClick={handleClick}
+          />
+        ))}
+
       </div>
+    </div>
+  
 
 
     </>

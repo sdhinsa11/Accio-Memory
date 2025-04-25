@@ -3,12 +3,14 @@
     src: url('/fonts/HarryPotter.ttf');
 }
 
+
 html, body, #root{
     margin: 0;
-    height: 100%;
     padding: 0;
     background-color: #11111F;
     color: #EDEDED;
+    overflow-x: hidden; /* prevent horizontal scrolling */
+    overflow-y: auto; 
 }
 .header{
     display: flex;
