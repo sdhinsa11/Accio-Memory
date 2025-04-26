@@ -1,4 +1,3 @@
-https://acciomemorygame.netlify.app
 
 # **Accio Memory**
 
@@ -22,5 +21,7 @@ To run this game locally you need to follow the steps below:
 
 Done! 
 
-**You can also play this game on this website:** 
+## **You can also play this game on this website:** 
 https://acciomemorygame.netlify.app
+
+# **Enjoy the game!**
