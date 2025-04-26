@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './styles/App.css'
+import './styles/app.css'
 import MemoryGame from './MemoryGame.jsx'
 
 
