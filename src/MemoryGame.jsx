@@ -57,7 +57,7 @@ function MemoryGame({level, cardData, handleLevel}) {
     }
 
     // Not clicked - increase the score by 1, set clicked to true for that card, keep playing game
-    const newScore = currentScore + 1; // manually calculate the updated score
+    const newScore = currentScore + 1; // manually calculate the updated score because it won't change in this render
     setCurrentScore(newScore);
     clickedCard.clicked = true;
 
