@@ -12,6 +12,7 @@ function MemoryGame({level, cardData, handleLevel}) {
   const [gameOver, setGameOver] = useState(false);
 
   // useEffect to filter out the cardData based on the level - could have used a useMemo here because I am not communicating with external systems directly and i just want to update the data and it depends on a state variable(s) which is why I use a hook like useEffect/ useMemo
+  // and only want to render on change 
   useEffect( () =>{
     if (!cardData) return;
 
