@@ -61,7 +61,7 @@ function MemoryGame({level, cardData, handleLevel}) {
     // Grab the id
     const clickedCard = selectData.find((card) => card.id === id);
 
-    // check if card clicked before 
+    // check if card clicked before - lose 
     if (clickedCard.clicked){
       // the card was clicked before so we set the score back too -1 and we return
       // NEED TO HANDLE BEST SCORE 
@@ -71,20 +71,21 @@ function MemoryGame({level, cardData, handleLevel}) {
       setCurrentScore(0);
       // handleLevel(0); // not yet cuz what if they want to replay
       setGameOver(true);
+
+      setSelectData(updatedData.map((card) => ({ ...card, clicked: false })));
       return;
     }
 
     // Not clicked - increase the score by 1, set clicked to true for that card, keep playing game
     const newScore = currentScore + 1; // manually calculate the updated score because it won't change in this render
     setCurrentScore(newScore);
-    // clickedCard.clicked = true;
+    // clickedCard.clicked = true; // cannot mututate state directly
 
-    const updatedData = selectData.map((card) => card.id === id ? { ...card, clicked: true } : card); // set the card to true and fix the state
-
+    const updatedData = selectData.map((card) => card.id === id ? { ...card, clicked: true } : card);
     setSelectData(updatedData);
 
     // Calculate if winner
-    if(handleWinner(newScore, selectData)){
+    if(handleWinner(newScore, updatedData)){
       // update best score
       if (newScore > bestScore){
         setBestScore(newScore);
@@ -95,13 +96,13 @@ function MemoryGame({level, cardData, handleLevel}) {
       // handleLevel(0); // set back so that it is not conditionally rendered 
 
       // set all the clicked cards back to false from this selected data so the state doesn't persist
-      setSelectData(selectData.map((val) => ({ ...val, clicked: false })));
+      setSelectData(updatedData.map((card) => ({ ...card, clicked: false }))); // using updatedData because the update of that state variable won't happen until the next render
       return;
     }
 
     // reshuffle data ALWAYS 
-    const shuffled = [...selectData].sort(() => Math.random() - 0.5);
-    setSelectData(shuffled);
+    const shuffled = [...updatedData].sort(() => Math.random() - 0.5); // using updatedData because the update of that state variable won't happen until the next render
+    setSelectData(shuffled); 
 
     
     return;
