@@ -59,7 +59,7 @@ function MemoryGame({level, cardData, handleLevel}) {
   // handles the clicking of the cards that will be called on each card
   function handleClick(id){
     // Grab the id
-    const clickedCard = selectData.find((card) => card.id == id);
+    const clickedCard = selectData.find((card) => card.id === id);
 
     // check if card clicked before 
     if (clickedCard.clicked){
@@ -77,18 +77,25 @@ function MemoryGame({level, cardData, handleLevel}) {
     // Not clicked - increase the score by 1, set clicked to true for that card, keep playing game
     const newScore = currentScore + 1; // manually calculate the updated score because it won't change in this render
     setCurrentScore(newScore);
-    clickedCard.clicked = true;
+    // clickedCard.clicked = true;
+
+    const updatedData = selectData.map((card) => card.id === id ? { ...card, clicked: true } : card); // set the card to true and fix the state
+
+    setSelectData(updatedData);
 
     // Calculate if winner
     if(handleWinner(newScore, selectData)){
       // update best score
-      if (currentScore > bestScore){
-        setBestScore(currentScore);
+      if (newScore > bestScore){
+        setBestScore(newScore);
       }
 
       setWinner(true); // there is a winner!! - need to figure out how to display this
       setGameOver(true);
       // handleLevel(0); // set back so that it is not conditionally rendered 
+
+      // set all the clicked cards back to false from this selected data so the state doesn't persist
+      setSelectData(selectData.map((val) => ({ ...val, clicked: false })));
       return;
     }
 
