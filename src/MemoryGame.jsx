@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import './styles/MemoryGame.css'
 import Card from './Card.jsx'
 
@@ -11,9 +11,25 @@ function MemoryGame({level, cardData, handleLevel}) {
   const [winner, setWinner] = useState(false);
   const [gameOver, setGameOver] = useState(false);
 
-  // useEffect to filter out the cardData based on the level - could have used a useMemo here because I am not communicating with external systems directly and i just want to update the data and it depends on a state variable(s) which is why I use a hook like useEffect/ useMemo
-  // and only want to render on change 
-  useEffect( () =>{
+  // useEffect to filter out the cardData based on the level and reshuffle when new level picked or a new game
+  // useEffect( () =>{
+  //   if (!cardData) return;
+
+  //   let cardCount = 4;
+  //   if (level == 2){
+  //     cardCount = 8;
+  //   }
+  //   else if (level == 3){
+  //     cardCount = 12;
+  //   }
+  //   cardData.sort(() => Math.random() - 0.5); // shuffle the data 
+  //   const selected = cardData.slice(0, cardCount); // grabbing the amount of cards based on the level
+  //   setSelectData(selected);
+
+  // }, [level, cardData]);
+
+  // Using a useMemo
+  useMemo( () =>{
     if (!cardData) return;
 
     let cardCount = 4;
@@ -28,6 +44,7 @@ function MemoryGame({level, cardData, handleLevel}) {
     setSelectData(selected);
 
   }, [level, cardData]);
+
 
 
   // This function tests if the person clicked all the cards 
@@ -75,7 +92,7 @@ function MemoryGame({level, cardData, handleLevel}) {
       return;
     }
 
-    // reshuffle data
+    // reshuffle data ALWAYS 
     const shuffled = [...selectData].sort(() => Math.random() - 0.5);
     setSelectData(shuffled);
 
