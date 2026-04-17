@@ -23,29 +23,10 @@ function MemoryGame({level, cardData, handleLevel}) {
       cardCount = 12;
     }
     cardData.sort(() => Math.random() - 0.5); // shuffle the data 
-    const selected = cardData.slice(0, cardCount); // grabbing the amount of cards based on the level
+    const selected = cardData.slice(0, cardCount); // grabbing the amount of cards based on the level and using cardData from initially to grab the cards
     setSelectData(selected);
 
   }, [level, cardData]);
-
-  // Using a useMemo
-  // useMemo( () =>{
-  //   if (!cardData) return;
-
-  //   let cardCount = 4;
-  //   if (level == 2){
-  //     cardCount = 8;
-  //   }
-  //   else if (level == 3){
-  //     cardCount = 12;
-  //   }
-  //   cardData.sort(() => Math.random() - 0.5); // shuffle the data 
-  //   const selected = cardData.slice(0, cardCount); // grabbing the amount of cards based on the level
-  //   setSelectData(selected);
-
-  // }, [level, cardData]);
-
-
 
   // This function tests if the person clicked all the cards 
   function handleWinner(currentScore, cardData){
@@ -72,7 +53,7 @@ function MemoryGame({level, cardData, handleLevel}) {
       // handleLevel(0); // not yet cuz what if they want to replay
       setGameOver(true);
 
-      // setSelectData(selectData.map((card) => ({ ...card, clicked: false })));
+      // setSelectData(selectData.map((card) => ({ ...card, clicked: false }))); // don't need because I don't mutuate the card data
       return;
     }
 
@@ -95,7 +76,7 @@ function MemoryGame({level, cardData, handleLevel}) {
       setGameOver(true);
       // handleLevel(0); // set back so that it is not conditionally rendered 
 
-      // set all the clicked cards back to false from this selected data so the state doesn't persist
+      // set all the clicked cards back to false from this selected data so the state doesn't persist - don't need it 
       // setSelectData(updatedData.map((card) => ({ ...card, clicked: false }))); // using updatedData because the update of that state variable won't happen until the next render
       return;
     }
