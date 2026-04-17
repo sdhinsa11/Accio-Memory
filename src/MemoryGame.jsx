@@ -72,7 +72,7 @@ function MemoryGame({level, cardData, handleLevel}) {
       // handleLevel(0); // not yet cuz what if they want to replay
       setGameOver(true);
 
-      setSelectData(updatedData.map((card) => ({ ...card, clicked: false })));
+      // setSelectData(selectData.map((card) => ({ ...card, clicked: false })));
       return;
     }
 
@@ -96,7 +96,7 @@ function MemoryGame({level, cardData, handleLevel}) {
       // handleLevel(0); // set back so that it is not conditionally rendered 
 
       // set all the clicked cards back to false from this selected data so the state doesn't persist
-      setSelectData(updatedData.map((card) => ({ ...card, clicked: false }))); // using updatedData because the update of that state variable won't happen until the next render
+      // setSelectData(updatedData.map((card) => ({ ...card, clicked: false }))); // using updatedData because the update of that state variable won't happen until the next render
       return;
     }
 
