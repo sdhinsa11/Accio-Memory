@@ -12,24 +12,7 @@ function MemoryGame({level, cardData, handleLevel}) {
   const [gameOver, setGameOver] = useState(false);
 
   // useEffect to filter out the cardData based on the level and reshuffle when new level picked or a new game
-  // useEffect( () =>{
-  //   if (!cardData) return;
-
-  //   let cardCount = 4;
-  //   if (level == 2){
-  //     cardCount = 8;
-  //   }
-  //   else if (level == 3){
-  //     cardCount = 12;
-  //   }
-  //   cardData.sort(() => Math.random() - 0.5); // shuffle the data 
-  //   const selected = cardData.slice(0, cardCount); // grabbing the amount of cards based on the level
-  //   setSelectData(selected);
-
-  // }, [level, cardData]);
-
-  // Using a useMemo
-  useMemo( () =>{
+  useEffect( () =>{
     if (!cardData) return;
 
     let cardCount = 4;
@@ -44,6 +27,23 @@ function MemoryGame({level, cardData, handleLevel}) {
     setSelectData(selected);
 
   }, [level, cardData]);
+
+  // Using a useMemo
+  // useMemo( () =>{
+  //   if (!cardData) return;
+
+  //   let cardCount = 4;
+  //   if (level == 2){
+  //     cardCount = 8;
+  //   }
+  //   else if (level == 3){
+  //     cardCount = 12;
+  //   }
+  //   cardData.sort(() => Math.random() - 0.5); // shuffle the data 
+  //   const selected = cardData.slice(0, cardCount); // grabbing the amount of cards based on the level
+  //   setSelectData(selected);
+
+  // }, [level, cardData]);
 
 
 
